@@ -1,48 +1,630 @@
-<div class="canva-embed">
-  <iframe loading="lazy"
-    src="https://www.canva.com/design/DAGz4iIKDPk/atf94S_WVjRslfQT8NovTg/view?embed"
-    allowfullscreen="allowfullscreen" allow="fullscreen">
-  </iframe>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Making Learning Interactive with Coursera's Dialogue</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2vh 3vw;
+            flex: 1;
+        }
+        
+        header {
+            text-align: center;
+            padding: 5vh 3vw;
+            background: linear-gradient(120deg, #1a2a6c, #2a3a7c, #3a4a8c);
+            color: white;
+            border-radius: 12px;
+            margin-bottom: 3vh;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            width: 100%;
+        }
+        
+        h1 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            margin-bottom: 2vh;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            max-width: 90%;
+            margin: 0 auto;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+        
+        .intro {
+            background-color: white;
+            padding: 4vh 3vw;
+            border-radius: 12px;
+            margin-bottom: 4vh;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            width: 100%;
+        }
+        
+        .intro p {
+            font-size: clamp(1rem, 1.8vw, 1.2rem);
+            margin-bottom: 2vh;
+            text-align: center;
+        }
+        
+        .highlight {
+            color: #1a2a6c;
+            font-weight: 600;
+        }
+        
+        .learn-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3vh 2vw;
+            margin-bottom: 5vh;
+            width: 100%;
+        }
+        
+        .learn-card {
+            background: white;
+            border-radius: 12px;
+            padding: 3vh 2vw;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            min-height: 280px;
+        }
+        
+        .learn-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .learn-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(to bottom, #1a2a6c, #3a4a8c);
+        }
+        
+        .learn-card h3 {
+            color: #1a2a6c;
+            margin-bottom: 2vh;
+            font-size: clamp(1.2rem, 2vw, 1.6rem);
+        }
+        
+        .learn-card p {
+            color: #555;
+            flex-grow: 1;
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+        }
+        
+        .icon {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: #1a2a6c;
+            margin-bottom: 2vh;
+        }
+        
+        .why-section, .where-section {
+            background: white;
+            padding: 4vh 3vw;
+            border-radius: 12px;
+            margin-bottom: 4vh;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            width: 100%;
+        }
+        
+        .section-title {
+            color: #1a2a6c;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            margin-bottom: 3vh;
+            text-align: center;
+            position: relative;
+            padding-bottom: 2vh;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(to right, #1a2a6c, #3a4a8c);
+            border-radius: 2px;
+        }
+        
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2vh 2vw;
+            margin-top: 3vh;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2vh;
+            padding: 2vh;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .benefit-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .benefit-icon {
+            background: #eef2f7;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 2vw;
+            flex-shrink: 0;
+            color: #1a2a6c;
+            font-size: 1.3rem;
+        }
+        
+        .benefit-item div {
+            flex: 1;
+        }
+        
+        .benefit-item h4 {
+            color: #1a2a6c;
+            margin-bottom: 1vh;
+            font-size: clamp(1rem, 1.8vw, 1.3rem);
+        }
+        
+        .placement-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2vh 2vw;
+            margin-top: 3vh;
+        }
+        
+        .placement-card {
+            background: #f8f9fa;
+            border-left: 5px solid #1a2a6c;
+            padding: 3vh 2vw;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+        
+        .placement-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .placement-card h4 {
+            color: #1a2a6c;
+            margin-bottom: 1.5vh;
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+        }
+        
+        .placement-card p {
+            color: #555;
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+        }
+        
+        .cta-section {
+            text-align: center;
+            padding: 6vh 3vw;
+            background: linear-gradient(120deg, #1a2a6c, #2a3a7c);
+            color: white;
+            border-radius: 12px;
+            margin-top: 5vh;
+            width: 100%;
+        }
+        
+        .cta-section h2 {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            margin-bottom: 3vh;
+        }
+        
+        .cta-section p {
+            max-width: 90%;
+            margin: 0 auto 4vh;
+            font-size: clamp(1rem, 1.8vw, 1.2rem);
+            line-height: 1.5;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: white;
+            color: #1a2a6c;
+            padding: 1.5vh 3vw;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+            transition: all 0.3s ease;
+            border: 2px solid white;
+            cursor: pointer;
+            margin: 1vh 1vw;
+            min-width: 180px;
+        }
+        
+        .btn:hover {
+            background: transparent;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-watch {
+            background: #ff6b6b;
+            color: white;
+            border-color: #ff6b6b;
+        }
+        
+        .btn-watch:hover {
+            background: transparent;
+            color: #ff6b6b;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 3vh 3vw;
+            margin-top: 5vh;
+            color: #666;
+            font-size: clamp(0.8rem, 1.5vw, 1rem);
+            width: 100%;
+            background: white;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        .hand-cursor {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .hand-cursor:hover {
+            transform: scale(1.05);
+        }
+        
+        .desktop-image {
+            text-align: center;
+            margin: 4vh 0;
+            width: 100%;
+        }
+        
+        .desktop-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Mobile-specific optimizations */
+        @media (max-width: 768px) {
+            .container {
+                padding: 2vh 4vw;
+            }
+            
+            header {
+                padding: 4vh 4vw;
+                margin-bottom: 2vh;
+            }
+            
+            .learn-section {
+                grid-template-columns: 1fr;
+                gap: 2vh;
+            }
+            
+            .learn-card {
+                min-height: 250px;
+                padding: 3vh 4vw;
+            }
+            
+            .benefits, .placement-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .benefit-item {
+                padding: 2vh 3vw;
+            }
+            
+            .btn {
+                display: block;
+                margin: 2vh auto;
+                width: 80%;
+                max-width: 280px;
+            }
+            
+            .cta-section {
+                padding: 5vh 4vw;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 1.5vh 5vw;
+            }
+            
+            header {
+                padding: 3vh 5vw;
+            }
+            
+            .learn-card {
+                min-height: 220px;
+                padding: 2.5vh 5vw;
+            }
+            
+            .benefit-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+                margin-right: 4vw;
+            }
+        }
+        
+        /* Large screen optimizations */
+        @media (min-width: 1600px) {
+            .container {
+                max-width: 1600px;
+            }
+            
+            .learn-section {
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            }
+        }
+        
+        /* Animation classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="fade-in">
+            <h1>Making Learning Interactive with Coursera's Dialogue</h1>
+            <p class="subtitle">Dialogue are course activities that enable authors to create AI-driven discussions, simulating interactions with a live instructor.</p>
+        </header>
+        
+        <section class="intro fade-in">
+            <p>This approach leads students through structured, text-based conversations designed to achieve specific learning objectives. Dialogue are an additional tool in our teaching toolkit strategically positioned to activate learners, support critical thinking, and improve knowledge application while keeping instructors central.</p>
+        </section>
+        
+        <h2 class="section-title fade-in">L.E.A.R.N. Best Practices</h2>
+        
+        <section class="learn-section">
+            <div class="learn-card fade-in">
+                <div class="icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h3>L - Leverage Prior Knowledge</h3>
+                <p>Assess prior knowledge and help learners set clear learning goals. Build on existing understanding foundations.</p>
+                <button class="btn hand-cursor" style="margin-top: auto;">Know More</button>
+            </div>
+            
+            <div class="learn-card fade-in">
+                <div class="icon">
+                    <i class="fas fa-compass"></i>
+                </div>
+                <h3>E - Engage Through Scenarios</h3>
+                <p>Connect learning to practical scenarios. Guide discovery through strategic questioning. Simulate real-world applications.</p>
+                <button class="btn hand-cursor" style="margin-top: auto;">Know More</button>
+            </div>
+            
+            <div class="learn-card fade-in">
+                <div class="icon">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <h3>A - Activate Participation</h3>
+                <p>Create interactive, participatory experiences. Encourages learners to think aloud and reason through problems systematically.</p>
+                <button class="btn hand-cursor" style="margin-top: auto;">Know More</button>
+            </div>
+            
+            <div class="learn-card fade-in">
+                <div class="icon">
+                    <i class="fas fa-redo"></i>
+                </div>
+                <h3>R - Reinforce Concepts</h3>
+                <p>Reinforce and review key concepts to strengthen retention. Provides immediate responses that help learners self-correct their thinking.</p>
+                <button class="btn hand-cursor" style="margin-top: auto;">Know More</button>
+            </div>
+            
+            <div class="learn-card fade-in">
+                <div class="icon">
+                    <i class="fas fa-clipboard-check"></i>
+                </div>
+                <h3>N - Navigate Understanding</h3>
+                <p>Clarify difficult concepts and prepare students for evaluation. Open-ended questioning reveals what students don't yet understand.</p>
+                <button class="btn hand-cursor" style="margin-top: auto;">Know More</button>
+            </div>
+        </section>
+        
+        <div class="desktop-image fade-in">
+            <img src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Modern Desktop Computer">
+        </div>
+        
+        <section class="why-section fade-in">
+            <h2 class="section-title">Why Dialogue Work</h2>
+            <div class="benefits">
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <div>
+                        <h4>Targeted Learning</h4>
+                        <p>Scenario-based prompts transform abstract ideas into concrete understanding.</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div>
+                        <h4>Active Engagement</h4>
+                        <p>Create interactive, participatory experiences that keep learners involved.</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div>
+                        <h4>Practical Application</h4>
+                        <p>Simulate real-world applications and practical implementation.</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div>
+                        <h4>Continuous Improvement</h4>
+                        <p>Provide detailed feedback for improvement and self-correction.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="where-section fade-in">
+            <h2 class="section-title">Where to Place Dialogue</h2>
+            <div class="placement-cards">
+                <div class="placement-card">
+                    <h4>Start of Modules</h4>
+                    <p>Place after lessons to revisit concepts and strengthen retention. Start modules by uncovering what learners know and their goals.</p>
+                </div>
+                
+                <div class="placement-card">
+                    <h4>Before Projects</h4>
+                    <p>Insert before projects to connect ideas to real applications and practical scenarios.</p>
+                </div>
+                
+                <div class="placement-card">
+                    <h4>Assessment Points</h4>
+                    <p>Use before exams or after to guide reflection and improvement. Clarify difficult concepts.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="cta-section fade-in">
+            <h2>Ready to Enhance Your Course?</h2>
+            <p>Discover how Coursera's Dialogue can transform your educational content into engaging, interactive learning experiences.</p>
+            <a href="https://www.coursera.org/?authMode=login&r=https%3A%2F%2Faccounts.coursera.org%2Foauth2%2Fv1%2Fauthorize%3Fri%3DtpgQ55LdnQ3K6_BpZRBoUBm-Mw082KB-yCDKheM_DZzIflaEk3QI4tnWlXKdz6Rx1DG9thiSB0ox0xHAS_lRyA.RT0kzqp8lyMgTZP8n2DJuA.oE9-u7XjlBNBb47ZS7_GThk6xpucj6UYYcqEYm_xWr64ImGBQ_RazMXtDoux2oMHF8dE4-tFt03bmnaDWLVu8yaSFjacgWxxW3dSbjFhJOXw_HHcchcVowlTrivTbleo6wrKQO-G4k6YK3DeedrKuSi5hqEsgq2hqk_WA6cg0Tmt0fB9F1iFjDeDEzmwAR12F-jMJOIJV-xHv21U3huYsD35B8L4Vf2rSob3uTu7xKSMe3DDRUGHW7PNCHJJ07QtaY2tOZXGTVbm1Xc5OE0sF4RqG_N2Q7rcNZabrWnykv-xsRdJVfjcWQ48uX3i1_80xe0U6DrJFhGMaCiGT9LZKKvEkvegXcaDpFjfVcq8XOBpgzfUsufjjsJ-9-8XQDgnIv86HXV-yINytioeTm0bhXYW9uGZ8LXQIrLXzOdOzhDDoMYAJ4MNqDYPmgXK8aHWBIHAUxSoL7HlfPhGP0EB0RXGLXL5M7fCf_U7VD8-6evYHHSng2ILqmmb303SNAD8KDhlDhGwH9CFk_4pK9n_Kd1_MfcI7zRk_izavXwaTo2hLKxIjvTNEPueIO-QhARmmqawhD5KyJRKD-04xr5fu0mJMP5V_rWFl94g9hdQpPqZV47NAq9if5uZuIDCdlIlcFfmBeQcZ2DmvYwQpyyNwyVBCjudDFBE3RVayM_g3RNdFlRwTMtgs8gRY_NvpZ2Rm12ay-toiZjzI81bCT23VVyRifn77p1hNJEbKldW4lAoCkHeDlv1QL55fsityfvmvPjh8hvLgTrjYCKjet5ZJ2QjrhGvtpy5h-fUfFMUyJ9FePO0iGjgunslAkhvoJhORfi70X9_k_Mllr1Sr8IhvZccAArrDJH8oP2T7oB3cns" class="btn hand-cursor">Get Started Today</a>
+            <a href="https://view-su2.highspot.com/viewer/abd9b25dd7adefe70335ed0544808925" class="btn btn-watch hand-cursor"><i class="fas fa-play-circle"></i> Watch Video</a>
+        </section>
+        
+        <footer>
+            <p>Centre for Excellence and Education Technology &copy; 2023. All rights reserved.</p>
+        </footer>
+    </div>
 
-<a href="https://www.canva.com/design/DAGz4iIKDPk/atf94S_WVjRslfQT8NovTg/view?utm_content=DAGz4iIKDPk&utm_campaign=designshare&utm_medium=embeds&utm_source=link"
-   target="_blank" rel="noopener">
-   Copy of Making-Learning-Interactive-with-Courseras-Dialogue.pdf
-</a> by Centre for Excellence and Education Technology
-
-<style>
-.canva-embed {
-  position: relative;
-  width: 100%;
-  height: 0;
-  padding-top: 339.4480%;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(63,69,81,0.16);
-  margin-top: 1.6em;
-  margin-bottom: 0.9em;
-  overflow: hidden; /* default: no scroll */
-}
-
-.canva-embed iframe {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  border: none;
-  pointer-events: auto; /* allow interaction */
-}
-
-/* Mobile fix: allow container scroll and smooth touch */
-@media (max-width: 768px) {
-  .canva-embed {
-    overflow: auto;
-    -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
-    touch-action: pan-y; /* allow vertical scroll */
-  }
-
-  .canva-embed iframe {
-    pointer-events: none; /* prevent iframe from blocking scroll */
-  }
-}
-</style>
+    <script>
+        // Add interactivity to the buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.btn');
+            
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Simple animation on click
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                    
+                    // In a real implementation, this would open a modal or navigate to a new page
+                    const card = this.closest('.learn-card');
+                    if (card) {
+                        alert('More information about ' + card.querySelector('h3').textContent + ' would appear here.');
+                    } else {
+                        alert('Action triggered: ' + this.textContent);
+                    }
+                });
+            });
+            
+            // Scroll animation for fade-in elements
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeInOnScroll = function() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.classList.add('visible');
+                    }
+                });
+            };
+            
+            // Check on load
+            fadeInOnScroll();
+            
+            // Check on scroll
+            window.addEventListener('scroll', fadeInOnScroll);
+            
+            // Ensure all elements are visible after a short delay (for initial load)
+            setTimeout(() => {
+                fadeElements.forEach(element => {
+                    element.classList.add('visible');
+                });
+            }, 300);
+            
+            // Adjust container height for full-screen experience
+            function adjustContainerHeight() {
+                const container = document.querySelector('.container');
+                const header = document.querySelector('header');
+                const footer = document.querySelector('footer');
+                
+                if (window.innerHeight > 800) {
+                    container.style.minHeight = 'calc(100vh - ' + (header.offsetHeight + footer.offsetHeight) + 'px)';
+                }
+            }
+            
+            // Adjust on load and resize
+            window.addEventListener('load', adjustContainerHeight);
+            window.addEventListener('resize', adjustContainerHeight);
+        });
+    </script>
+</body>
+</html>
