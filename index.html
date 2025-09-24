@@ -7,17 +7,20 @@
 
 <a href="https://www.canva.com/design/DAGz4iIKDPk/atf94S_WVjRslfQT8NovTg/view?utm_content=DAGz4iIKDPk&utm_campaign=designshare&utm_medium=embeds&utm_source=link"
    target="_blank" rel="noopener">
-   <style>
+   Copy of Making-Learning-Interactive-with-Courseras-Dialogue.pdf
+</a> by Centre for Excellence and Education Technology
+
+<style>
 .canva-embed {
   position: relative;
   width: 100%;
   height: 0;
   padding-top: 339.4480%;
-  overflow: hidden; /* default: no scroll */
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(63,69,81,0.16);
   margin-top: 1.6em;
   margin-bottom: 0.9em;
+  overflow: hidden; /* default: no scroll */
 }
 
 .canva-embed iframe {
@@ -27,12 +30,19 @@
   top: 0;
   left: 0;
   border: none;
+  pointer-events: auto; /* allow interaction */
 }
 
-/* Enable scroll ONLY on mobile */
+/* Mobile fix: allow container scroll and smooth touch */
 @media (max-width: 768px) {
   .canva-embed {
-    overflow: auto;  /* allow scrolling */
+    overflow: auto;
+    -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+    touch-action: pan-y; /* allow vertical scroll */
+  }
+
+  .canva-embed iframe {
+    pointer-events: none; /* prevent iframe from blocking scroll */
   }
 }
 </style>
